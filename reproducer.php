@@ -12,6 +12,9 @@ $messageEvents->add(new MessageEvent($message1 = (new Email())->to('alice@exampl
 $messageEvents->add(new MessageEvent($message2 = (new Email())->to('bob@example.com'), Envelope::create($message2), 'null://null'));
 
 $cache = new \Symfony\Component\Cache\Adapter\FilesystemAdapter('message_events');
+// uncomment the next line to "make it works"
+// $cache = new \Symfony\Component\Cache\Adapter\FilesystemAdapter('message_events', 0, null, new \Symfony\Component\Cache\Marshaller\DefaultMarshaller(false));
+
 $item = $cache->getItem($key = 'my_key');
 $item->set($messageEvents);
 
@@ -20,6 +23,9 @@ var_dump($item); // Comment/uncomment to trigger the bug
 $cache->save($item);
 
 $cache = new \Symfony\Component\Cache\Adapter\FilesystemAdapter('message_events');
+// uncomment the next line to "make it works"
+// $cache = new \Symfony\Component\Cache\Adapter\FilesystemAdapter('message_events', 0, null, new \Symfony\Component\Cache\Marshaller\DefaultMarshaller(false));
+
 $item = $cache->getItem($key);
 
 // should dump "false"
