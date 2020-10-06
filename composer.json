@@ -1,6 +1,5 @@
 {
     "require": {
-        "symfony/cache": "^5.1",
         "symfony/mailer": "^5.1",
         "symfony/mime": "^5.1"
     }
